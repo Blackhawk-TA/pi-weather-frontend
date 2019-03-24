@@ -1,17 +1,25 @@
 import React, {Component} from 'react';
-import {Chart} from '../ui/Chart';
+const dataWrapper = require("../components/dataWrapper");
 
 class Button extends Component {
-	handleClick(oEvent) {
-		let iTimespan = oEvent.currentTarget.textContent.split(" ")[0];
-		//TODO update charts
+	handleClick() {
+		let iTimespan = Number(this.props.name.split(" ")[0]);
+		this.props.main.setState({
+			timespan: iTimespan,
+			chartData: [
+				dataWrapper.fetchChartData("Temperature", iTimespan),
+				dataWrapper.fetchChartData("Humidity", iTimespan),
+				dataWrapper.fetchChartData("Pressure", iTimespan),
+				dataWrapper.fetchChartData("Air quality", iTimespan)
+			]
+		});
 	}
 
 	render() {
 		return (
-			<button className="button" onClick={(e) => this.handleClick(e)}>{this.props.name}</button>
+			<button className="button" onClick={this.handleClick.bind(this)}>{this.props.name}</button>
 		);
 	}
 }
 
-export {Button};
+export default Button;

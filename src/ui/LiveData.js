@@ -19,7 +19,7 @@ class LiveData extends Component {
 	}
 
 	update() {
-		//TODO fetch live data here
+		//TODO fetch live data here, also consider adding a clock for sync measures
 
 		this.setState({
 			temperature: this.iTemperature,
@@ -38,4 +38,4 @@ class LiveData extends Component {
 	}
 }
 
-export {LiveData};
+export default LiveData;
