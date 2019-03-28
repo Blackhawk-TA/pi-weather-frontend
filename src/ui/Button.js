@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-const dataWrapper = require("../components/dataWrapper");
+const dataWrapper = require("../utils/dataWrapper");
 
 class Button extends Component {
 	handleClick() {

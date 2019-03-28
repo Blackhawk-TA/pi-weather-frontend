@@ -1,0 +1,11 @@
+.liveData {
+	display: inline-block;
+	width: 70%;
+	text-align: left;
+}
+
+.time {
+	display: inline-block;
+	width: 30%;
+	text-align: right;
+}

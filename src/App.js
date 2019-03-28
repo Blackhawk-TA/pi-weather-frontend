@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import Button from './ui/Button';
 import Chart from './ui/Chart';
 import LiveData from './ui/LiveData';
-import './App.css';
+import './css/App.css';
 
-const dataWrapper = require("./components/dataWrapper");
+const dataWrapper = require("./utils/dataWrapper");
 const defaultTimespan = 7; //One week
 
 class App extends Component {

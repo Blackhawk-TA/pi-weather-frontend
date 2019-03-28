@@ -1,7 +1,7 @@
 const timespanHandler = require("./timespanHandler");
 
 module.exports = {
-	fetchChartData: function (sType, iTimespan) { //TODO implement
+	fetchChartData: function (sType, iTimespan) {
 		let aTimespanLabels = timespanHandler.formatTimespanLabels(iTimespan);
 
 		if (iTimespan === 7) {

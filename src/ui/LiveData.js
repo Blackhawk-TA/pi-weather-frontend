@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../css/LiveData.css';
 
 class LiveData extends Component {
 	constructor(props) {
@@ -31,8 +32,13 @@ class LiveData extends Component {
 
 	render() {
 		return (
-			<div className="liveData">
-				<p>Temperature: {this.state.temperature}°C | Humidity: {this.state.humidity}% | Pressure: {this.state.pressure}mBar | Air quality: {this.state.airQuality}</p>
+			<div>
+				<div className={"liveData"}>
+					<p>Temperature: {this.state.temperature}°C | Humidity: {this.state.humidity}% | Pressure: {this.state.pressure}mBar | Air quality: {this.state.airQuality}</p>
+				</div>
+				<div className={"time"}>
+					<p>{new Date().toLocaleTimeString()}</p>
+				</div>
 			</div>
 		);
 	}
