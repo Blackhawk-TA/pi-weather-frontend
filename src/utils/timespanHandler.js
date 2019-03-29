@@ -53,7 +53,7 @@ module.exports = {
 			case 1: //one day
 				let iTotalHours = 24;
 				for (let i = 0; i < iTotalHours; i++) {
-					let iHour = oCurDate.getHours() - iTotalHours + i;
+					let iHour = oCurDate.getHours() - iTotalHours + i + 1;
 					if (iHour < 0) {
 						iHour = iHour + iTotalHours;
 					}
