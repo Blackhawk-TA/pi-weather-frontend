@@ -16,11 +16,15 @@ class LiveData extends Component {
 		};
 
 		this.update = this.update.bind(this);
-		setInterval(this.update, 1000);
+		setInterval(this.update, 10000);
 	}
 
 	update() {
-		//TODO fetch live data here, also consider adding a clock for sync measures
+		let oLiveData = require("../weatherData/liveData");
+		this.iTemperature = oLiveData.temperature;
+		this.iHumidity = oLiveData.humidity;
+		this.iPressure = oLiveData.pressure;
+		this.iAirQuality = oLiveData.airQuality;
 
 		this.setState({
 			temperature: this.iTemperature,

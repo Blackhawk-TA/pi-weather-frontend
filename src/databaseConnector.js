@@ -13,6 +13,10 @@ function fetchData(iTimespan) {
 		iCurTimeInSec = Math.round(new Date().getTime() / 1000),
 		iMinAllowedDate = iCurTimeInSec - iTimespanInSec;
 
+	if (!fs.existsSync(base + "/resources")) {
+		fs.mkdirSync(base + "/resources");
+	}
+
 	let oDatabase = new sqlite.Database(sDatabasePath, (err) => {
 		if (err) return console.error(err.message);
 		console.log("Connected to SQLite database.");
@@ -37,10 +41,16 @@ function fetchData(iTimespan) {
 				aValues.push(oRow.value);
 			});
 
-			if (iTimespan === 365) {
-				iTimespanModifier = 30;
-			} else {
-				iTimespanModifier = iTimespan;
+			switch (iTimespan) {
+				case 1:
+					iTimespanModifier = Math.floor(aValues.length / 24);
+					break;
+				case 365:
+					iTimespanModifier = Math.floor(aValues.length / 12);
+					break;
+				default:
+					iTimespanModifier = Math.floor(aValues.length / iTimespan);
+					break;
 			}
 
 			for (let i = 0; i < aValues.length; i++) {
@@ -87,7 +97,6 @@ function fetchData(iTimespan) {
 	});
 }
 
-
 function executeFetch() {
 	fetchData(1);
 	fetchData(7);
@@ -96,4 +105,4 @@ function executeFetch() {
 }
 
 executeFetch();
-// setInterval(() => executeFetch(), iOneHour);
+setInterval(() => executeFetch(), iOneHour);
