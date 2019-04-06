@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import '../css/LiveData.css';
 
+const request = require('request');
+
 class LiveData extends Component {
 	constructor(props) {
 		super(props);
@@ -12,36 +14,50 @@ class LiveData extends Component {
 			temperature: this.iTemperature,
 			humidity: this.iHumidity,
 			pressure: this.iPressure,
-			airQuality: this.iAirQuality
+			airQuality: this.iAirQuality,
+			time: new Date().toLocaleTimeString()
 		};
 
 		this.update = this.update.bind(this);
-		setInterval(this.update, 10000);
+		setInterval(this.update, 1000);
 	}
 
 	update() {
-		let oLiveData = require("../weatherData/liveData");
-		this.iTemperature = oLiveData.temperature;
-		this.iHumidity = oLiveData.humidity;
-		this.iPressure = oLiveData.pressure;
-		this.iAirQuality = oLiveData.airQuality;
+		let oOptions = {
+			url: "http://127.0.0.1:4000/liveData.json",
+			method: 'GET',
+			json: true
+		};
+		request(oOptions, function (error, response, body) {
+			if (!error && response.statusCode === 200) {
+				let oLiveData = body;
+				this.iTemperature = oLiveData.temperature;
+				this.iHumidity = oLiveData.humidity;
+				this.iPressure = oLiveData.pressure;
+				this.iAirQuality = oLiveData.airQuality;
 
-		this.setState({
-			temperature: this.iTemperature,
-			humidity: this.iHumidity,
-			pressure: this.iPressure,
-			airQuality: this.iAirQuality
-		});
+				this.setState({
+					temperature: this.iTemperature,
+					humidity: this.iHumidity,
+					pressure: this.iPressure,
+					airQuality: this.iAirQuality,
+					time: new Date().toLocaleTimeString()
+				});
+			} else {
+				console.error(error);
+			}
+		}.bind(this));
 	}
 
 	render() {
 		return (
 			<div>
 				<div className={"liveData"}>
-					<p>Temperature: {this.state.temperature}°C | Humidity: {this.state.humidity}% | Pressure: {this.state.pressure}mBar | Air quality: {this.state.airQuality}</p>
+					<p>Temperature: {this.state.temperature}°C | Humidity: {this.state.humidity}% |
+						Pressure: {this.state.pressure}mBar | Air quality: {this.state.airQuality}</p>
 				</div>
 				<div className={"time"}>
-					<p>{new Date().toLocaleTimeString()}</p>
+					<p>{this.state.time}</p>
 				</div>
 			</div>
 		);

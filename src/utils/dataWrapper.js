@@ -1,4 +1,5 @@
 const timespanHandler = require("./timespanHandler");
+const request = require('request');
 
 module.exports = {
 	fetchChartData: function (sType, iTimespan) {
@@ -6,24 +7,18 @@ module.exports = {
 			oData = {},
 			aMinValues = [],
 			aAvgValues = [],
-			aMaxValues = [];
+			aMaxValues = [],
+			oOptions = {
+				url: "http://127.0.0.1:4000/" + sType + ".json",
+				method: 'GET',
+				json: true
+			};
 
-		switch (sType) {
-			case "Temperature":
-				oData = require("../weatherData/temperature");
-				break;
-			case "Humidity":
-				oData = require("../weatherData/humidity");
-				break;
-			case "Pressure":
-				oData = require("../weatherData/pressure");
-				break;
-			case "Air quality":
-				oData = require("../weatherData/airQuality");
-				break;
-			default:
-				break;
-		}
+		request(oOptions, function (error, response, body) {
+			if (!error && response.statusCode === 200) {
+				oData = body;
+			}
+		});
 
 		try {
 			aMinValues = oData[iTimespan].min;
