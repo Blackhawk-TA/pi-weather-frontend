@@ -13,10 +13,10 @@ class App extends Component {
 		this.state = {
 			timespan: defaultTimespan,
 			chartData: [
-				dataWrapper.fetchChartData("Temperature", defaultTimespan),
-				dataWrapper.fetchChartData("Humidity", defaultTimespan),
-				dataWrapper.fetchChartData("Pressure", defaultTimespan),
-				dataWrapper.fetchChartData("Air quality", defaultTimespan)
+				dataWrapper.fetchChartData("temperature", defaultTimespan),
+				dataWrapper.fetchChartData("humidity", defaultTimespan),
+				dataWrapper.fetchChartData("pressure", defaultTimespan),
+				dataWrapper.fetchChartData("airQuality", defaultTimespan)
 			]
 		}
 	}

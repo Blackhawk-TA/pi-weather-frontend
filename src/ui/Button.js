@@ -7,10 +7,10 @@ class Button extends Component {
 		this.props.main.setState({
 			timespan: iTimespan,
 			chartData: [
-				dataWrapper.fetchChartData("Temperature", iTimespan),
-				dataWrapper.fetchChartData("Humidity", iTimespan),
-				dataWrapper.fetchChartData("Pressure", iTimespan),
-				dataWrapper.fetchChartData("Air quality", iTimespan)
+				dataWrapper.fetchChartData("temperature", iTimespan),
+				dataWrapper.fetchChartData("humidity", iTimespan),
+				dataWrapper.fetchChartData("pressure", iTimespan),
+				dataWrapper.fetchChartData("airQuality", iTimespan)
 			]
 		});
 	}

@@ -9,7 +9,7 @@ module.exports = {
 			aAvgValues = [],
 			aMaxValues = [],
 			oOptions = {
-				url: "http://127.0.0.1:4000/" + sType + ".json",
+				url: "http://192.168.178.21:4000/" + sType + ".json",
 				method: 'GET',
 				json: true
 			};
@@ -20,12 +20,10 @@ module.exports = {
 			}
 		});
 
-		try {
-			aMinValues = oData[iTimespan].min;
-			aAvgValues = oData[iTimespan].avg;
-			aMaxValues = oData[iTimespan].max;
-		} catch (err) {
-			console.error(err);
+		if (oData && oData[iTimespan]) {
+			aMinValues = oData[iTimespan].min ? oData[iTimespan].min : [];
+			aAvgValues = oData[iTimespan].avg ? oData[iTimespan].avg : [];
+			aMaxValues = oData[iTimespan].max ? oData[iTimespan].max : [];
 		}
 
 		return {

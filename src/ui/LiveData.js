@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../css/LiveData.css';
 
-const request = require('request');
+const request = require('request');// require module
 
 class LiveData extends Component {
 	constructor(props) {
@@ -24,12 +24,12 @@ class LiveData extends Component {
 
 	update() {
 		let oOptions = {
-			url: "http://127.0.0.1:4000/liveData.json",
+			url: "http://192.168.178.21:4000/liveData.json",
 			method: 'GET',
 			json: true
 		};
 		request(oOptions, function (error, response, body) {
-			if (!error && response.statusCode === 200) {
+			if (!error && response.statusCode === 200 && body) {
 				let oLiveData = body;
 				this.iTemperature = oLiveData.temperature;
 				this.iHumidity = oLiveData.humidity;
@@ -43,7 +43,7 @@ class LiveData extends Component {
 					airQuality: this.iAirQuality,
 					time: new Date().toLocaleTimeString()
 				});
-			} else {
+			} else if (error) {
 				console.error(error);
 			}
 		}.bind(this));
