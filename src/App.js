@@ -10,14 +10,21 @@ const defaultTimespan = 7; //One week
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
+		// let aPromises = [
+		// 	dataWrapper.fetchChartData("temperature", defaultTimespan),
+		// 	dataWrapper.fetchChartData("humidity", defaultTimespan),
+		// 	dataWrapper.fetchChartData("pressure", defaultTimespan),
+		// 	dataWrapper.fetchChartData("airQuality", defaultTimespan)
+		// ];
+		// Promise.all(aPromises).then((fulfilled) => {
+		// 	this.state = {
+		// 		timespan: defaultTimespan,
+		// 		chartData: fulfilled
+		// 	}
+		// });
+		this.state = { //TODO remove later on
 			timespan: defaultTimespan,
-			chartData: [
-				dataWrapper.fetchChartData("temperature", defaultTimespan),
-				dataWrapper.fetchChartData("humidity", defaultTimespan),
-				dataWrapper.fetchChartData("pressure", defaultTimespan),
-				dataWrapper.fetchChartData("airQuality", defaultTimespan)
-			]
+			chartData: [{},{},{},{}]
 		}
 	}
 
