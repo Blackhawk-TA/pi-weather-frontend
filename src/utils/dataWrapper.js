@@ -5,7 +5,7 @@ module.exports = {
 	fetchChartData: function (sType, iTimespan) {
 		return new Promise((resolve) => {
 			let oOptions = {
-				url: "http://192.168.178.21:4000/" + sType + ".json",
+				url: "http://192.168.178.21:4000/" + sType,
 				method: 'GET',
 				json: true
 			};

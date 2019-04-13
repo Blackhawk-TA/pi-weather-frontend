@@ -5,27 +5,28 @@ import LiveData from './ui/LiveData';
 import './css/App.css';
 
 const dataWrapper = require("./utils/dataWrapper");
-const defaultTimespan = 7; //One week
+const defaultTimespan = 1; //One day
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		// let aPromises = [
-		// 	dataWrapper.fetchChartData("temperature", defaultTimespan),
-		// 	dataWrapper.fetchChartData("humidity", defaultTimespan),
-		// 	dataWrapper.fetchChartData("pressure", defaultTimespan),
-		// 	dataWrapper.fetchChartData("airQuality", defaultTimespan)
-		// ];
-		// Promise.all(aPromises).then((fulfilled) => {
-		// 	this.state = {
-		// 		timespan: defaultTimespan,
-		// 		chartData: fulfilled
-		// 	}
-		// });
-		this.state = { //TODO remove later on
+		this.state = {
 			timespan: defaultTimespan,
 			chartData: [{},{},{},{}]
-		}
+		};
+		let aPromises = [
+			dataWrapper.fetchChartData("temperature", defaultTimespan),
+			dataWrapper.fetchChartData("humidity", defaultTimespan),
+			dataWrapper.fetchChartData("pressure", defaultTimespan),
+			dataWrapper.fetchChartData("airQuality", defaultTimespan)
+		];
+		Promise.all(aPromises).then((fulfilled) => {
+			this.setState({
+				timespan: defaultTimespan,
+				chartData: fulfilled
+			});
+			this.render();
+		});
 	}
 
 	render() {

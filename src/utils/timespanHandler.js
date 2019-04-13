@@ -27,7 +27,7 @@ module.exports = {
 				break;
 			case 365:
 				aDefaultTimespanLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-				iCurDate = oCurDate.getMonth() + 1;
+				iCurDate = oCurDate.getMonth();
 				break;
 			default:
 				break;

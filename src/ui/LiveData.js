@@ -24,7 +24,7 @@ class LiveData extends Component {
 
 	update() {
 		let oOptions = {
-			url: "http://192.168.178.21:4000/liveData.json",
+			url: "http://192.168.178.21:8000",
 			method: 'GET',
 			json: true
 		};
@@ -35,17 +35,17 @@ class LiveData extends Component {
 				this.iHumidity = oLiveData.humidity;
 				this.iPressure = oLiveData.pressure;
 				this.iAirQuality = oLiveData.airQuality;
-
-				this.setState({
-					temperature: this.iTemperature,
-					humidity: this.iHumidity,
-					pressure: this.iPressure,
-					airQuality: this.iAirQuality,
-					time: new Date().toLocaleTimeString()
-				});
 			} else if (error) {
 				console.error(error);
 			}
+
+			this.setState({
+				temperature: this.iTemperature,
+				humidity: this.iHumidity,
+				pressure: this.iPressure,
+				airQuality: this.iAirQuality,
+				time: new Date().toLocaleTimeString()
+			});
 		}.bind(this));
 	}
 
