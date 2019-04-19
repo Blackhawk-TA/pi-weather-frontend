@@ -5,7 +5,7 @@ module.exports = {
 		let iDaysInLastMonth = this._getDaysInMonth(iCurDate.getMonth(), iCurDate.getFullYear());
 
 		for (let i = 0; i < iTimespan; i++) {
-			let iDay = iCurDay - iTimespan + i + 1;
+			let iDay = iCurDay - iTimespan + i;
 			if (iDay < 1) {
 				iDay = iDay + iDaysInLastMonth;
 			}
@@ -23,7 +23,7 @@ module.exports = {
 		switch (iTimespan) {
 			case 7:
 				aDefaultTimespanLabels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-				iCurDate = oCurDate.getDay();
+				iCurDate = oCurDate.getDay() - 1;
 				break;
 			case 365:
 				aDefaultTimespanLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -53,7 +53,7 @@ module.exports = {
 			case 1: //one day
 				let iTotalHours = 24;
 				for (let i = 0; i < iTotalHours; i++) {
-					let iHour = oCurDate.getHours() - iTotalHours + i + 1;
+					let iHour = oCurDate.getHours() - iTotalHours + i;
 					if (iHour < 0) {
 						iHour = iHour + iTotalHours;
 					}

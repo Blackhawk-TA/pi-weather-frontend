@@ -39,13 +39,20 @@ class LiveData extends Component {
 				console.error(error);
 			}
 
-			this.setState({
-				temperature: this.iTemperature,
-				humidity: this.iHumidity,
-				pressure: this.iPressure,
-				airQuality: this.iAirQuality,
-				time: new Date().toLocaleTimeString()
-			});
+			if (this.iTemperature !== 0 && this.iHumidity !== 0 && this.iPressure !== 0 && this.iAirQuality !== 0) {
+				this.setState({
+					temperature: this.iTemperature,
+					humidity: this.iHumidity,
+					pressure: this.iPressure,
+					airQuality: this.iAirQuality,
+					time: new Date().toLocaleTimeString()
+				});
+			} else {
+				this.setState({
+					time: new Date().toLocaleTimeString()
+				});
+				console.log("broke");
+			}
 		}.bind(this));
 	}
 
