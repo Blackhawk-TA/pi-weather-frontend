@@ -23,7 +23,7 @@ module.exports = {
 		switch (iTimespan) {
 			case 7:
 				aDefaultTimespanLabels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-				iCurDate = oCurDate.getDay() - 1;
+				iCurDate = oCurDate.getDay();
 				break;
 			case 365:
 				aDefaultTimespanLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
