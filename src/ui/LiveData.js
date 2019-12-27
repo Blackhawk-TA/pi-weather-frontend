@@ -24,7 +24,7 @@ class LiveData extends Component {
 
 	update() {
 		let oOptions = {
-			url: "http://192.168.178.21:8000",
+			url: process.env.REACT_APP_LIVE_SERVER,
 			method: 'GET',
 			json: true
 		};
